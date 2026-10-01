@@ -26,7 +26,35 @@ const themes = [
 
 class App extends React.Component {
   // BEGIN (write your solution here)
+  state = {
+  theme: themes[0],
+}
 
+
+setTheme = (theme) => {
+  this.setState({ theme })
+}
+
+
+render() {
+  const context = {
+    themes, theme: this.state.theme, setTheme: this.setTheme,
+  }
+
+  return (
+    <ThemeContext.Provider value={context}>
+      <ThemeSwitcher />
+
+      <Tabs defaultActiveKey="home">
+        <Tab eventKey="home" title="Home">
+          <Home />
+        </Tab>
+
+        <Tab eventKey="profile" title="Profile">
+          <Profile />
+        </Tab>
+      </Tabs>
+    </ThemeContext.Provider>)}
   // END
 }
 
